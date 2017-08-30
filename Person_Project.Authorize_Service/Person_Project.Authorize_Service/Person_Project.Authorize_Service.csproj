@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Person_Project.Authorize_Service.Data\Person_Project.Authorize_Service.Data.csproj" />
     <ProjectReference Include="..\Person_Project.Authorize_Service.Service\Person_Project.Authorize_Service.Service.csproj" />
   </ItemGroup>
 

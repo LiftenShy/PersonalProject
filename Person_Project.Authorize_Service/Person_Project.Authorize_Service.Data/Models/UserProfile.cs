@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace Person_Project.Authorize_Service.Data.Models
 {
-    class UserProfile
+    public class UserProfile
     {
+        public string LoginName { get; set; }
 
+        public string PasswordHash { get; set; }
     }
 }

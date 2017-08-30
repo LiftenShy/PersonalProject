@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Person_Project.Authorize_Service.Data.Models
 {
-    class UserRole
+    public class UserRole
     {
+        public string Name { get; set; }
     }
 }
