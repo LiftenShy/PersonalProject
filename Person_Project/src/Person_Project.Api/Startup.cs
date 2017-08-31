@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
@@ -13,7 +12,7 @@ using Person_Project.Data;
 using Person_Project.Data.Abstract;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace Person_Project.Api
+namespace Person_Project.API
 {
     public class Startup
     {
@@ -50,7 +49,7 @@ namespace Person_Project.Api
             });
 
             var connection =
-                @"Server=SERGEY-LAPTOP\SQLSERVER;Database=Person;User Id=admin;Password=qaz7412369;";
+                @"Server=localhost\SQLEXPRESS;Database=Person;";
 
             services.AddDbContext<PersonContext>(options => options.UseSqlServer(connection));
 

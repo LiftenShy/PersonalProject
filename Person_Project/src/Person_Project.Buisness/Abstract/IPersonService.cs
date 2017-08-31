@@ -1,8 +1,5 @@
-﻿using System;
+﻿using Person_Project.Models.EntityModels;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Person_Project.Data.Model;
 
 namespace Person_Project.Business.Abstract
 {

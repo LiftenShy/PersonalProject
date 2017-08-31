@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Person_Project.Data.Models.AuthModels
+namespace Person_Project.Models.EntityModels.AuthModels
 {
-    class UserRole
+    public class UserRole
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
     }
 }

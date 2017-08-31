@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Person_Project.Data.Models.AuthModels
+namespace Person_Project.Models.EntityModels.AuthModels
 {
-    class UserProfile
+    public class UserProfile
     {
+        public int Id { get; set; }
+
         public string LoginName { get; set; }
+
         public byte[] PasswordHash { get; set; }
     }
 }

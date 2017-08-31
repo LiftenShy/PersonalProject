@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Person_Project.Models.EntityModels
+namespace Person_Project.Api.Models
 {
-    public class Person
+    public class PersonModel
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public int Age { get; set; }

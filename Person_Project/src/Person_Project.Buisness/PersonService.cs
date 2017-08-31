@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using Person_Project.Business.Abstract;
-using Person_Project.Data.Model;
 using Person_Project.Data.Abstract;
+using Person_Project.Models.EntityModels;
 using System.Linq;
 
 namespace Person_Project.Business

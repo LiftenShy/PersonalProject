@@ -1,6 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using Person_Project.Data.Model;
+using Person_Project.Models.EntityModels;
 
 namespace Person_Project.Data
 {
