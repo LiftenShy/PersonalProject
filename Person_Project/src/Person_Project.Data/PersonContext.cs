@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using Person_Project.Models.EntityModels;
+using Person_Project.Models.EntityModels.AuthModels;
 
 namespace Person_Project.Data
 {
@@ -11,5 +12,9 @@ namespace Person_Project.Data
         { }
 
         public DbSet<Person> Persons { get; set; }
+
+        public DbSet<UserRole> UserRoles { get; set; }
+
+        public DbSet<UserProfile> UserProfiles { get; set; }
     }
 }

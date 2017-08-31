@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Person_Project.Business.Abstract;
 using Person_Project.Models.EntityModels;
 
-namespace Person_Project.Api.Controllers
+namespace Person_Project.API.Controllers
 {
     [Route("api/[controller]")]
     public class PersonController : Controller
@@ -15,47 +15,42 @@ namespace Person_Project.Api.Controllers
             _personService = personService;
         }
 
-        // GET api/Persons
         [HttpGet]
         public JsonResult GetAll()
         {
             return new JsonResult(_personService.GetAll());
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
             return new JsonResult(_personService.GetById(id));
         }
 
-        // POST api/values
         [HttpPost]
         public JsonResult Post([FromBody] Person person)
         {
             try
             {
-                if(person!=null)
+                if (person != null)
                 {
                     _personService.Insert(person);
                     return new JsonResult("Succsess insert");
                 }
                 return new JsonResult("person is null");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return new JsonResult(e.Message);
             }
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]Person newPerson)
         {
-            _personService.Update(newPerson,id);
+            _personService.Update(newPerson, id);
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {

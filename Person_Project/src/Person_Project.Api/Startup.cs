@@ -49,7 +49,7 @@ namespace Person_Project.API
             });
 
             var connection =
-                @"Server=localhost\SQLEXPRESS;Database=Person;";
+                @"Server=localhost\SQLEXPRESS;Database=Persons;Trusted_Connection=True;";
 
             services.AddDbContext<PersonContext>(options => options.UseSqlServer(connection));
 
