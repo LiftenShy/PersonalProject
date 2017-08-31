@@ -9,6 +9,6 @@ namespace Person_Project.Authorize_Service.Models
     {
         public string LoginName { get; set; }
 
-        public byte[] PasswordHash { get; set; }
+        public string PasswordHash { get; set; }
     }
 }

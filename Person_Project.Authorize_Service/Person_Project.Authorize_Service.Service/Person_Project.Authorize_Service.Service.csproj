@@ -9,4 +9,8 @@
     <Folder Include="Implements\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Person_Project.Models" Version="1.0.3" />
+  </ItemGroup>
+
 </Project>

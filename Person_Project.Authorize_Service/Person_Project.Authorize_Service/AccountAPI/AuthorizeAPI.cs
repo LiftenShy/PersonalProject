@@ -1,28 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Person_Project.Authorize_Service.Models;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Person_Project.Models.EntityModels.AuthModels;
 
 namespace Person_Project.Authorize_Service.AccountAPI
 {
     [Route("api/[controller]")]
     public class AuthorizeAPI : Controller
     {
-        // POST api/LogIn
-        [HttpPost]
-        public void Post([FromBody]UserProfileModel account)
+        private readonly UserManager<UserProfile> _userManager;
+        private readonly SignInManager<UserProfile> _signInManager;
+
+        public AuthorizeAPI(UserManager<UserProfile> userManager, SignInManager<UserProfile> signInManager)
         {
-           
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
-        // PUT api/LogOff
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        // POST api/LogIn
+        [HttpPost]
+        public JsonResult Register([FromBody]UserProfileModel account)
         {
+            using (SHA256 sha256 = new SHA256CryptoServiceProvider())
+            {
+                return new JsonResult(new UserProfile
+                {
+                    LoginName = "sergey",
+                    PasswordHash = sha256.ComputeHash(Convert.FromBase64String(account.PasswordHash))
+                });
+            }
         }
     }
 }
