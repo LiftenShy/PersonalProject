@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using Person_Project.Authorize_Service.Data.Models;
 
 namespace Person_Project.Authorize_Service
 {
@@ -12,12 +11,10 @@ namespace Person_Project.Authorize_Service
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentity<UserProfile, UserRole>()
+            services.AddIdentity<User, IdentityRole>()
                     .AddDefaultTokenProviders();
 
             services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/LogIn");
-
-            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -29,8 +26,6 @@ namespace Person_Project.Authorize_Service
             }
 
             app.UseAuthentication();
-
-            app.UseMvc();
         }
     }
 }

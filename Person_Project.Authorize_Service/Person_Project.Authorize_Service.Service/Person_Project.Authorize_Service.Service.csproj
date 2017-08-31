@@ -9,8 +9,4 @@
     <Folder Include="Implements\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Person_Project.Authorize_Service.Data\Person_Project.Authorize_Service.Data.csproj" />
-  </ItemGroup>
-
 </Project>
