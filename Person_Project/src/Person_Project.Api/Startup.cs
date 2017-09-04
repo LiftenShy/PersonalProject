@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
@@ -6,8 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Person_Project.Business;
-using Person_Project.Business.Abstract;
+using Person_Project.API.Configs;
+using Person_Project.Buisness;
+using Person_Project.Buisness.Abstract;
 using Person_Project.Data;
 using Person_Project.Data.Abstract;
 using Swashbuckle.AspNetCore.Swagger;
@@ -16,6 +18,8 @@ namespace Person_Project.API
 {
     public class Startup
     {
+        private MapperConfiguration _mapperConfiguration { get; set; }
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -24,6 +28,11 @@ namespace Person_Project.API
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            _mapperConfiguration = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -51,15 +60,18 @@ namespace Person_Project.API
             var connection =
                 @"Server=localhost\SQLEXPRESS;Database=Persons;Trusted_Connection=True;";
 
-            services.AddDbContext<PersonContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<PersonContext>(options => options.UseSqlServer(connection),ServiceLifetime.Singleton);
 
             services.AddSingleton(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddSingleton<IPersonService, PersonService>();
+            services.AddSingleton<IUserProfileService, UserProfileService>();
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
+
+            services.AddAutoMapper();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

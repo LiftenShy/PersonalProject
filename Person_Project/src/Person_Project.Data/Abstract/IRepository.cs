@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Person_Project.Data.Abstract
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<T>
     {
         T GetById(int id);
         void Insert(T entity);

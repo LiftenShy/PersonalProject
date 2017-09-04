@@ -1,7 +1,9 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using Person_Project.Business.Abstract;
+using Person_Project.Buisness.Abstract;
 using Person_Project.Models.EntityModels;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace Person_Project.API.Controllers
 {
@@ -13,6 +15,14 @@ namespace Person_Project.API.Controllers
         public PersonController(IPersonService personService)
         {
             _personService = personService;
+            if (_personService == null)
+            {
+                Debug.WriteLine($"Null is {nameof(_personService)}");
+            }
+            else
+            {
+                Debug.WriteLine($"PersonService {nameof(_personService)}");
+            }
         }
 
         [HttpGet]

@@ -1,12 +1,12 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using Person_Project.Business.Abstract;
+using Person_Project.Buisness.Abstract;
 using Person_Project.Data.Abstract;
 using Person_Project.Models.EntityModels;
 using System.Linq;
 
-namespace Person_Project.Business
+namespace Person_Project.Buisness
 {
     public class PersonService : IPersonService
     {

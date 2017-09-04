@@ -1,7 +1,7 @@
 ﻿using Person_Project.Models.EntityModels;
 using System.Collections.Generic;
 
-namespace Person_Project.Business.Abstract
+namespace Person_Project.Buisness.Abstract
 {
     public interface IPersonService
     {

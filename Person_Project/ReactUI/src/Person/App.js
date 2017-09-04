@@ -9,7 +9,7 @@ class App extends Component {
     };
 
     componentDidMount() {
-        const url = 'http://localhost:52307/api/Person';
+        const url = 'http://localhost:52350/api/Person';
         fetch(url)
             .then(function (response) {
                 return response.json();
