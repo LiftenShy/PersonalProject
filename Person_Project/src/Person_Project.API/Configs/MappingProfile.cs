@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using AutoMapper;
 using Person_Project.Api.Models;
 using Person_Project.API.Models;
@@ -11,12 +12,12 @@ namespace Person_Project.API.Configs
     {
         public MappingProfile()
         {
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<UserProfile, UserProfileModel>();
-            });
             CreateMap<Person, PersonModel>();
             CreateMap<PersonModel, Person>();
+
+            CreateMap<UserProfile, UserProfileModel>()
+            .ForMember(model => model.Password, upm => upm.MapFrom(up => Encoding.ASCII.GetString(up.PasswordHash)));
+
             CreateMap<UserProfileModel, UserProfile>();
         }
     }

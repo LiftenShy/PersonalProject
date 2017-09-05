@@ -4,23 +4,37 @@ using Person_Project.Authorize_Service.Models;
 using Person_Project.Models.EntityModels.AuthModels;
 using System.Text;
 using System;
+using System.Threading;
+using Person_Project.Authorize_Service.Service.Implements;
+using System.Threading.Tasks;
 
 namespace Person_Project.Authorize_Service.AccountAPI
 {
     [Route("api/[controller]")]
     public class AuthorizeAPI : Controller
     {
+        private readonly CustomUserStore<UserProfile> _customUserStore;
+
+        public AuthorizeAPI()
+        {
+            _customUserStore = new CustomUserStore<UserProfile>();
+        }
         // POST api/LogIn
         [HttpPost]
-        public JsonResult Register([FromBody]UserProfileModel account)
+        public async Task<JsonResult> Register([FromBody] UserProfileModel account)
         {
             using (SHA256 sha256 = new SHA256CryptoServiceProvider())
             {
-                return new JsonResult(new UserProfileModel
+                var result = await _customUserStore.CreateAsync(new UserProfile
                 {
                     LoginName = account.LoginName,
-                    PasswordHash = Convert.ToBase64String(sha256.ComputeHash(Encoding.ASCII.GetBytes(account.PasswordHash)))
-                });
+                    PasswordHash = sha256.ComputeHash(Encoding.ASCII.GetBytes(account.PasswordHash))
+                }, new CancellationToken());
+                if (result.Succeeded)
+                {
+                    return new JsonResult("Succses");
+                }
+                return new JsonResult("Failed");
             }
         }
     }
