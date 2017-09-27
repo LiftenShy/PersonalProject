@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{92E86C64-DCA8-46D9-8F34-643576C1A083}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>TestPdfGeneration</RootNamespace>
+    <AssemblyName>TestPdfGeneration</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=1.4.0.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>packages\CommonServiceLocator.1.4.0\lib\net45\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.12.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.12\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Character\Classes\Warrior\WarriorWeapons.cs" />
+    <Compile Include="Character\Classes\Warrior\Warrior.cs" />
+    <Compile Include="Character\Weapons\Fist.cs" />
+    <Compile Include="Character\Weapons\UsualSword.cs" />
+    <Compile Include="Model\Base\ISpell.cs" />
+    <Compile Include="Model\Base\IWeapon.cs" />
+    <Compile Include="Model\Classes\Armor\IArcherArmors.cs" />
+    <Compile Include="Model\Classes\Armor\IMageArmors.cs" />
+    <Compile Include="Model\Classes\Armor\IRogueArmors.cs" />
+    <Compile Include="Model\Classes\Armor\IWarriorArmors.cs" />
+    <Compile Include="Model\Classes\IArcher.cs" />
+    <Compile Include="Model\Base\IHero.cs" />
+    <Compile Include="Model\Classes\IMage.cs" />
+    <Compile Include="Model\Classes\IRogue.cs" />
+    <Compile Include="Model\Classes\IWarrior.cs" />
+    <Compile Include="Model\Classes\Spell\IArcherSpells.cs" />
+    <Compile Include="Model\Classes\Spell\IMageSpells.cs" />
+    <Compile Include="Model\Classes\Spell\IRogueSpells.cs" />
+    <Compile Include="Model\Classes\Spell\IWarriorSpells.cs" />
+    <Compile Include="Model\Classes\Weapon\IArcherWeapons.cs" />
+    <Compile Include="Model\Classes\Weapon\IMageWeapons.cs" />
+    <Compile Include="Model\Classes\Weapon\IRogueWeapons.cs" />
+    <Compile Include="Model\Classes\Weapon\IWarriorWeapons.cs" />
+    <Compile Include="Model\Items\Weapons\Base\IFist.cs" />
+    <Compile Include="Model\Items\Weapons\IMagicalWeapon.cs" />
+    <Compile Include="Model\Items\Weapons\IPhysicalWeapon.cs" />
+    <Compile Include="Model\Spells\CastSpell\IFireBoll.cs" />
+    <Compile Include="Model\Spells\CastSpell\IPowerfulShoot.cs" />
+    <Compile Include="Character\Spells\Magical\FireBoll.cs" />
+    <Compile Include="Character\Spells\Magical\PowerfullShoot.cs" />
+    <Compile Include="Model\Spells\ICastSpell.cs" />
+    <Compile Include="Model\Spells\IInstantSpell.cs" />
+    <Compile Include="Character\Spells\Physical\BackStab.cs" />
+    <Compile Include="Model\Spells\InstantSpell\IBackStab.cs" />
+    <Compile Include="Model\Spells\InstantSpell\IRage.cs" />
+    <Compile Include="Character\Spells\Physical\Rage.cs" />
+    <Compile Include="Model\Items\Weapons\Base\IBow.cs" />
+    <Compile Include="Model\Items\Weapons\Base\IDagger.cs" />
+    <Compile Include="Model\Items\Weapons\Base\IStaff.cs" />
+    <Compile Include="Model\Items\Weapons\Base\ISword.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Action\" />
+    <Folder Include="Character\Armors\" />
+    <Folder Include="Model\Items\Armors\" />
+    <Folder Include="UserOption\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
