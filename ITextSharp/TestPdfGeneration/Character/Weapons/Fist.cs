@@ -16,5 +16,10 @@ namespace TestPdfGeneration.Character.Weapons
         public string Name { get; set; }
         public string Description { get; set; }
         public int BasicDamage { get; set; }
+
+        public int PhysicalAttack()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

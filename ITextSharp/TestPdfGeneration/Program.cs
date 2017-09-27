@@ -13,32 +13,69 @@ namespace TestPdfGeneration
 {
     public class Program
     {
-        IWarriorWeapons ww = new Fist();
+        /*IWarriorWeapons ww = new Fist();
         IFist fist = new WarriorWeapons();
-        Warrior warrion = new Warrior("Name", 100, 2, , new List<IWarriorSpells>() {new Rage()}, new List<IWarriorArmors>());
+        Warrior warrion = new Warrior("Name", 100, 2, , new List<IWarriorSpells>() {new Rage()}, new List<IWarriorArmors>());*/
+
         static void Main()
         {
-            Console.WriteLine("--------------------");
-            Console.WriteLine("1)Create new hero");
-            Console.WriteLine("2)Load save");
-            Console.WriteLine("--------------------");
-            switch (Console.ReadLine())
+            bool flag = true;
+            while (flag)
             {
-                case "1":
-                    {
-                        //create
-                        break;
-                    }
-                case "2":
-                    {
-                        //load
-                        break;
-                    }
-                default:
-                    {
-
-                        break;
-                    }
+                Console.WriteLine(
+                                    "              ( || )\n" +
+                                    "    ___(O_O)___ ||\n" +
+                                    "        (|)     || \n" +
+                                    "        / \\       \n" +
+                                    "       /   \\      \n");
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine(
+                                    "          ( \\\\ ) \n" +
+                                    "             \\\\  \n" +
+                                    "             /\\\\ \n" +
+                                    "    ___(O_O)/      \n" +
+                                    "        (|)        \n" +
+                                    "        / \\       \n" +
+                                    "       /   \\      \n");
+                Console.ReadKey();
+                Console.Clear();
+                /*Console.WriteLine("--------------------");
+                Console.WriteLine("1)Create new hero");
+                Console.WriteLine("2)Load save");
+                Console.WriteLine("--------------------");
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        {
+                            Console.WriteLine(
+                                    "              ( || )\n" +
+                                    "    ___(O_O)___ ||\n" +
+                                    "        (|)     || \n" +
+                                    "        / \\       \n" +
+                                    "       /   \\      \n");
+                            break;
+                        }
+                    case "2":
+                        {
+                            Console.WriteLine(
+                                    "          ( \\\\ ) \n" +
+                                    "             \\\\  \n" +
+                                    "             /\\\\ \n" +
+                                    "    ___(O_O)/      \n" +
+                                    "        (|)        \n" +
+                                    "        / \\       \n" +
+                                    "       /   \\      \n");
+                            break;
+                        }
+                    default:
+                        {
+                            flag = false;
+                            break;
+                        }
+            }
+                Console.ReadKey();
+                Console.Clear();*/
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿using TestPdfGeneration.Model.Spells.CastSpell.Abstract;
+﻿using TestPdfGeneration.Model.Spells.CastSpell;
 
 namespace TestPdfGeneration.Model.Classes.Spell
 {

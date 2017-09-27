@@ -8,7 +8,7 @@ namespace TestPdfGeneration.Character.Classes
         public string Description { get; set; }
         public int BasicDamage { get; set; }
 
-        public int PhysicalAttact()
+        public int PhysicalAttack()
         {
             return 1;
         }
