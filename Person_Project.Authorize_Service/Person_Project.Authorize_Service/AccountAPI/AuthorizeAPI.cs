@@ -7,6 +7,7 @@ using System;
 using System.Threading;
 using Person_Project.Authorize_Service.Service.Implements;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Person_Project.Authorize_Service.AccountAPI
 {
@@ -21,7 +22,7 @@ namespace Person_Project.Authorize_Service.AccountAPI
         }
         // POST api/LogIn
         [HttpPost]
-        public async Task<JsonResult> Register([FromBody] UserProfileModel account)
+        public async Task<string> Register([FromBody] UserProfileModel account)
         {
             using (SHA256 sha256 = new SHA256CryptoServiceProvider())
             {
@@ -30,11 +31,9 @@ namespace Person_Project.Authorize_Service.AccountAPI
                     LoginName = account.LoginName,
                     PasswordHash = sha256.ComputeHash(Encoding.ASCII.GetBytes(account.PasswordHash))
                 }, new CancellationToken());
-                if (result.Succeeded)
-                {
-                    return new JsonResult("Succses");
-                }
-                return new JsonResult("Failed");
+
+
+                return JsonConvert.SerializeObject(result.Succeeded ? "Succes" : "Failed");
             }
         }
     }

@@ -17,4 +17,9 @@ namespace Person_Project.Data
 
         public DbSet<UserProfile> UserProfiles { get; set; }
     }
+    
+    protected override OnModelCreating(ModelBuilder modelBuilder)
+    {
+        
+    }
 }
