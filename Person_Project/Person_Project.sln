@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1F950D3D-9E03-4EC1-AE8F-7EDB04BD98CB}"
 EndProject
@@ -9,11 +9,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Person_Project.Models", "src\Person_Project.Models\Person_Project.Models.csproj", "{BB09A5B2-AE15-428B-8ADD-5A1AD74D4B0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Person_Project.API", "src\Person_Project.API\Person_Project.API.csproj", "{327D5707-511E-4FB2-9D74-1FF157ACA602}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Person_Project.API", "src\Person_Project.API\Person_Project.API.csproj", "{327D5707-511E-4FB2-9D74-1FF157ACA602}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Person_Project.Buisness", "src\Person_Project.Buisness\Person_Project.Buisness.csproj", "{8D1AFDB5-DA98-4D18-A6BA-155F4BE6D214}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Person_Project.Buisness", "src\Person_Project.Buisness\Person_Project.Buisness.csproj", "{8D1AFDB5-DA98-4D18-A6BA-155F4BE6D214}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Person_Project.Data", "src\Person_Project.Data\Person_Project.Data.csproj", "{4A87D212-A0B7-4959-A5C1-877E776DDCD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Person_Project.Data", "src\Person_Project.Data\Person_Project.Data.csproj", "{4A87D212-A0B7-4959-A5C1-877E776DDCD5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Person_Project.Authorize_Service", "..\Person_Project.Authorize_Service\Person_Project.Authorize_Service\Person_Project.Authorize_Service.csproj", "{B67D29B7-3494-43B2-AE5C-792F99888827}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Person_Project.Authorize_Service.Service", "..\Person_Project.Authorize_Service\Person_Project.Authorize_Service.Service\Person_Project.Authorize_Service.Service.csproj", "{4AE6D8CB-D317-411D-B895-E8769159864D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +41,14 @@ Global
 		{4A87D212-A0B7-4959-A5C1-877E776DDCD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A87D212-A0B7-4959-A5C1-877E776DDCD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A87D212-A0B7-4959-A5C1-877E776DDCD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B67D29B7-3494-43B2-AE5C-792F99888827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B67D29B7-3494-43B2-AE5C-792F99888827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B67D29B7-3494-43B2-AE5C-792F99888827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B67D29B7-3494-43B2-AE5C-792F99888827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AE6D8CB-D317-411D-B895-E8769159864D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AE6D8CB-D317-411D-B895-E8769159864D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AE6D8CB-D317-411D-B895-E8769159864D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AE6D8CB-D317-411D-B895-E8769159864D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,8 +58,10 @@ Global
 		{327D5707-511E-4FB2-9D74-1FF157ACA602} = {1F950D3D-9E03-4EC1-AE8F-7EDB04BD98CB}
 		{8D1AFDB5-DA98-4D18-A6BA-155F4BE6D214} = {1F950D3D-9E03-4EC1-AE8F-7EDB04BD98CB}
 		{4A87D212-A0B7-4959-A5C1-877E776DDCD5} = {1F950D3D-9E03-4EC1-AE8F-7EDB04BD98CB}
+		{B67D29B7-3494-43B2-AE5C-792F99888827} = {1F950D3D-9E03-4EC1-AE8F-7EDB04BD98CB}
+		{4AE6D8CB-D317-411D-B895-E8769159864D} = {1F950D3D-9E03-4EC1-AE8F-7EDB04BD98CB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1B462E51-C2E0-4843-919C-93034352040A}
+		SolutionGuid = {F59CBC10-91B7-41AC-9E81-21BCBF4F5008}
 	EndGlobalSection
 EndGlobal

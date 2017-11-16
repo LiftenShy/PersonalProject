@@ -5,6 +5,8 @@ using Person_Project.Buisness.Abstract;
 using Person_Project.Data.Abstract;
 using Person_Project.Models.EntityModels;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Person_Project.Buisness
 {
@@ -17,28 +19,33 @@ namespace Person_Project.Buisness
             _personRepository = persoRepository;
         }
 
-        public List<Person> GetAll()
+        public async Task<List<Person>> GetAll()
         {
-            return _personRepository.Table.ToList();
+            return await _personRepository.GetAll();
         }
 
-        public Person GetById(int id)
+        public async Task<Person> GetById(int id)
         {
-            return _personRepository.GetById(id);
+            return await _personRepository.GetById(id);
         }
 
-        public void Update(Person newPerson, int id)
+        public async Task<Person> GetByName(string name)
         {
-            var updatePerson = _personRepository.GetById(id);
+            return await _personRepository.Table.FirstOrDefaultAsync(p => p.Name.Contains(name));
+        }
+
+        public async Task Update(Person newPerson, int id)
+        {
+            var updatePerson = _personRepository.GetById(id).Result;
             updatePerson = newPerson;
-            _personRepository.Update(updatePerson);
+            await _personRepository.Update(updatePerson);
         }
 
-        public void Insert(Person person)
+        public async Task Insert(Person person)
         {
             if (!_personRepository.Table.Any(p => p.Name == person.Name))
             {
-                _personRepository.Insert(person);
+                await _personRepository.Insert(person);
             }
             else
             {
@@ -46,11 +53,11 @@ namespace Person_Project.Buisness
             }
         }
 
-        public void Remove(int id)
+        public async Task Remove(int id)
         {
             if (_personRepository.Table.Any(p => p.Id == id))
             {
-                _personRepository.Delete(_personRepository.Table.FirstOrDefault(p => p.Id == id));
+                await _personRepository.Delete(_personRepository.Table.FirstOrDefault(p => p.Id == id));
             }
             else
             {

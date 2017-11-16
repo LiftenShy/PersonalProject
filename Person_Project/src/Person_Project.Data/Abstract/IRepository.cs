@@ -1,14 +1,17 @@
 ﻿
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Person_Project.Data.Abstract
 {
     public interface IRepository<T>
     {
-        T GetById(int id);
-        void Insert(T entity);
-        void Update(T entity);
-        void Delete(T entity);
+        Task<T> GetById(int id);
+        Task Insert(T entity);
+        Task Update(T entity);
+        Task Delete(T entity);
+        Task<List<T>> GetAll();
         IQueryable<T> Table { get; }
     }
 }

@@ -4,6 +4,7 @@ using Person_Project.Buisness.Abstract;
 using Person_Project.Models.EntityModels;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Person_Project.API.Controllers
 {
@@ -26,25 +27,25 @@ namespace Person_Project.API.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetAll()
+        public async Task<JsonResult> GetAll()
         {
-            return new JsonResult(_personService.GetAll());
+            return new JsonResult(await _personService.GetAll());
         }
 
         [HttpGet("{id}")]
-        public JsonResult Get(int id)
+        public async Task<JsonResult> Get(int id)
         {
-            return new JsonResult(_personService.GetById(id));
+            return new JsonResult(await _personService.GetById(id));
         }
 
         [HttpPost]
-        public JsonResult Post([FromBody] Person person)
+        public async Task<JsonResult> Post([FromBody] Person person)
         {
             try
             {
                 if (person != null)
                 {
-                    _personService.Insert(person);
+                    await _personService.Insert(person);
                     return new JsonResult("Succsess insert");
                 }
                 return new JsonResult("person is null");
@@ -56,19 +57,19 @@ namespace Person_Project.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Person newPerson)
+        public async Task Put(int id, [FromBody]Person newPerson)
         {
-            _personService.Update(newPerson, id);
+            await _personService.Update(newPerson, id);
         }
 
         [HttpDelete("{id}")]
-        public JsonResult Delete(int id)
+        public async Task<JsonResult> Delete(int id)
         {
             try
             {
                 if (id != 0)
                 {
-                    _personService.Remove(id);
+                    await _personService.Remove(id);
                     return new JsonResult("Succsess delete");
                 }
                 return new JsonResult("id is zero");

@@ -2,69 +2,65 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Person_Project.Models.EntityModels.AuthModels;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System;
-using Newtonsoft.Json;
 
 namespace Person_Project.Authorize_Service.Service.Implements
 {
-    public class CustomUserStore<TUser> : IUserStore<TUser> where TUser : UserProfile
+    public class CustomUserStore<TType> : IUserStore<UserProfile>
     {
-        public Task<IdentityResult> CreateAsync(TUser user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> CreateAsync(UserProfile user, CancellationToken cancellationToken)
         {
-            
+            bool result = await HttpConnector.HttpPostAsJson(user);
+            return result ? IdentityResult.Success : IdentityResult.Failed(new IdentityError { Description = $"Can't connect to api service." });
         }
 
-        public Task<IdentityResult> DeleteAsync(TUser user, CancellationToken cancellationToken)
+        public Task<IdentityResult> DeleteAsync(UserProfile user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
-        public Task<TUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
+        public Task<UserProfile> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
-        public Task<TUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
+        public Task<UserProfile> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
-            return Task.Factory.StartNew(() => users.FirstOrDefault(u => u.LoginName.ToUpper().Contains(normalizedUserName)));
+            throw new System.NotImplementedException();
         }
 
-        public Task<string> GetNormalizedUserNameAsync(TUser user, CancellationToken cancellationToken)
+        public Task<string> GetNormalizedUserNameAsync(UserProfile user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
-        public Task<string> GetUserIdAsync(TUser user, CancellationToken cancellationToken)
+        public Task<string> GetUserIdAsync(UserProfile user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
-        public Task<string> GetUserNameAsync(TUser user, CancellationToken cancellationToken)
+        public Task<string> GetUserNameAsync(UserProfile user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
-        public Task SetNormalizedUserNameAsync(TUser user, string normalizedName, CancellationToken cancellationToken)
+        public Task SetNormalizedUserNameAsync(UserProfile user, string normalizedName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
-        public Task SetUserNameAsync(TUser user, string userName, CancellationToken cancellationToken)
+        public Task SetUserNameAsync(UserProfile user, string userName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
-        public Task<IdentityResult> UpdateAsync(TUser user, CancellationToken cancellationToken)
+        public Task<IdentityResult> UpdateAsync(UserProfile user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
     }
 }

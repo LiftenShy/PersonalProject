@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Person_Project.Models.EntityModels.BaseModels;
 
 namespace Person_Project.Models.EntityModels
 {
-    public class Person
+    public class Person : BaseEntity
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public int Age { get; set; }

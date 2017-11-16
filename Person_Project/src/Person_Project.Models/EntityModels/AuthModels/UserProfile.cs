@@ -1,10 +1,9 @@
-﻿
+﻿using Person_Project.Models.EntityModels.BaseModels;
+
 namespace Person_Project.Models.EntityModels.AuthModels
 {
-    public class UserProfile
+    public class UserProfile : BaseEntity
     {
-        public int Id { get; set; }
-
         public string LoginName { get; set; }
 
         public byte[] PasswordHash { get; set; }

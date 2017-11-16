@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Person_Project.Authorize_Service.Service.Implements;
+using Person_Project.Models.EntityModels.AuthModels;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Person_Project.Authorize_Service
@@ -24,6 +27,8 @@ namespace Person_Project.Authorize_Service
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped(typeof(IUserStore<UserProfile>), typeof(CustomUserStore<UserProfile>));
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
@@ -46,6 +51,8 @@ namespace Person_Project.Authorize_Service
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
+
+            var appSettings = Configuration.GetSection("Person_Project.API").GetSection("Post");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

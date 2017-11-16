@@ -1,14 +1,16 @@
 ﻿using Person_Project.Models.EntityModels.AuthModels;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Person_Project.Buisness.Abstract
 {
     public interface IUserProfileService
     {
-        List<UserProfile> GetAll();
-        UserProfile GetById(int id);
-        void Update(UserProfile userProfile, int id);
-        void Insert(UserProfile userProfile);
-        void Remove(int id);
+        Task<List<UserProfile>> GetAll();
+        Task<UserProfile> GetById(int id);
+        Task<UserProfile> GetByName(string name);
+        Task Update(UserProfile newPerson, int id);
+        Task Insert(UserProfile person);
+        Task Remove(int id);
     }
 }

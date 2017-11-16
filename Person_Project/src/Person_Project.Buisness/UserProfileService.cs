@@ -1,11 +1,11 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Person_Project.Models.EntityModels.AuthModels;
 using Person_Project.Buisness.Abstract;
 using Person_Project.Data.Abstract;
 using System;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Person_Project.Buisness
 {
@@ -18,28 +18,33 @@ namespace Person_Project.Buisness
             _userProfileRepository = userProfileRepository;
         }
 
-        public List<UserProfile> GetAll()
+        public async Task<List<UserProfile>> GetAll()
         {
-            return _userProfileRepository.Table.ToList();
+            return await _userProfileRepository.GetAll();
         }
 
-        public UserProfile GetById(int id)
+        public async Task<UserProfile> GetById(int id)
         {
-            return _userProfileRepository.GetById(id);
+            return await _userProfileRepository.GetById(id);
         }
 
-        public void Update(UserProfile newPerson, int id)
+        public async Task<UserProfile> GetByName(string name)
         {
-            var updatePerson = _userProfileRepository.GetById(id);
-            updatePerson = newPerson;
-            _userProfileRepository.Update(updatePerson);
+            return await _userProfileRepository.Table.FirstOrDefaultAsync(up => up.LoginName.Contains(name));
         }
 
-        public void Insert(UserProfile person)
+        public async Task Update(UserProfile newPerson, int id)
+        {
+            var profile = _userProfileRepository.GetById(id).Result;
+            profile = newPerson;
+            await _userProfileRepository.Update(profile);
+        }
+
+        public async Task Insert(UserProfile person)
         {
             if (!_userProfileRepository.Table.Any(p => p.LoginName == person.LoginName))
             {
-                _userProfileRepository.Insert(person);
+                await _userProfileRepository.Insert(person);
             }
             else
             {
@@ -47,11 +52,11 @@ namespace Person_Project.Buisness
             }
         }
 
-        public void Remove(int id)
+        public async Task Remove(int id)
         {
-            if (_userProfileRepository.Table.Any(p => p.Id == id))
+            if (!_userProfileRepository.GetById(id).Result.Equals(null))
             {
-                _userProfileRepository.Delete(_userProfileRepository.Table.FirstOrDefault(p => p.Id == id));
+                await _userProfileRepository.Delete(_userProfileRepository.Table.FirstOrDefault(p => p.Id == id));
             }
             else
             {

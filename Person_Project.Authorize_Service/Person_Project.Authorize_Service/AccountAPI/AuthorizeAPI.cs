@@ -1,39 +1,42 @@
-﻿using System.Security.Cryptography;
-using Microsoft.AspNetCore.Mvc;
-using Person_Project.Authorize_Service.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using Person_Project.Models.EntityModels.AuthModels;
-using System.Text;
-using System;
-using System.Threading;
-using Person_Project.Authorize_Service.Service.Implements;
 using System.Threading.Tasks;
+using System.Threading;
+using Person_Project.Authorize_Service.Models;
 using Newtonsoft.Json;
+using System;
+using Person_Project.Authorize_Service.Helper;
+using Microsoft.AspNetCore.Identity;
 
 namespace Person_Project.Authorize_Service.AccountAPI
 {
     [Route("api/[controller]")]
     public class AuthorizeAPI : Controller
     {
-        private readonly CustomUserStore<UserProfile> _customUserStore;
+        private readonly IUserStore<UserProfile> _userStore;
 
-        public AuthorizeAPI()
+        public AuthorizeAPI(IUserStore<UserProfile> userStore)
         {
-            _customUserStore = new CustomUserStore<UserProfile>();
+            _userStore = userStore;
         }
-        // POST api/LogIn
+
         [HttpPost]
         public async Task<string> Register([FromBody] UserProfileModel account)
         {
-            using (SHA256 sha256 = new SHA256CryptoServiceProvider())
+            try
             {
-                var result = await _customUserStore.CreateAsync(new UserProfile
+                var result = await _userStore.CreateAsync(new UserProfile
                 {
                     LoginName = account.LoginName,
-                    PasswordHash = sha256.ComputeHash(Encoding.ASCII.GetBytes(account.PasswordHash))
+                    PasswordHash = CryptoService.Crypto(account.Password)
                 }, new CancellationToken());
 
 
                 return JsonConvert.SerializeObject(result.Succeeded ? "Succes" : "Failed");
+            }
+            catch(Exception e)
+            {
+                return JsonConvert.SerializeObject(e.Message);
             }
         }
     }

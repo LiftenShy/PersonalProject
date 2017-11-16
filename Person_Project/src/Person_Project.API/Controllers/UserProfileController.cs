@@ -6,6 +6,7 @@ using Person_Project.Models.EntityModels.AuthModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Person_Project.API.Controllers
 {
@@ -23,25 +24,31 @@ namespace Person_Project.API.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetAll()
+        public async Task<JsonResult> GetAll()
         {
-            return new JsonResult(_mapper.Map<List<UserProfile>, List<UserProfileModel>>(_userProfileService.GetAll()));
+            return new JsonResult(_mapper.Map<List<UserProfile>, List<UserProfileModel>>(await _userProfileService.GetAll()));
         }
 
         [HttpGet("{id}")]
-        public JsonResult Get(int id)
+        public async Task<JsonResult> GetById(int id)
         {
-            return new JsonResult(_userProfileService.GetById(id));
+            return new JsonResult(await _userProfileService.GetById(id));
+        }
+
+        [HttpGet("{name}")]
+        public async Task<JsonResult> GetByName(string name)
+        {
+            return new JsonResult(await _userProfileService.GetByName(name));
         }
 
         [HttpPost]
-        public JsonResult Post([FromBody] UserProfileModel newUserProfile)
+        public JsonResult Post([FromBody] UserProfile newUserProfile)
         {
             try
             {
                 if (newUserProfile != null)
                 {
-                    var userProfile = new UserProfile { LoginName = newUserProfile.LoginName, PasswordHash = Encoding.ASCII.GetBytes(newUserProfile.Password) };
+                    var userProfile = new UserProfile { LoginName = newUserProfile.LoginName, PasswordHash = newUserProfile.PasswordHash };
                     _userProfileService.Insert(userProfile);
                     return new JsonResult("Succsess insert");
                 }
@@ -54,9 +61,9 @@ namespace Person_Project.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]UserProfile newUserProfile)
+        public void Put(int id, [FromBody]UserProfileModel newUserProfile)
         {
-            _userProfileService.Update(newUserProfile, id);
+            _userProfileService.Update(_mapper.Map<UserProfileModel, UserProfile>(newUserProfile), id);
         }
 
         [HttpDelete("{id}")]
