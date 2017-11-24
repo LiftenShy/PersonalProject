@@ -1,4 +1,5 @@
 ﻿using SocialMusic.Models.EntityModels.BaseModels;
+using System.Collections.Generic;
 
 namespace SocialMusic.Models.EntityModels.AuthModels
 {
@@ -8,8 +9,8 @@ namespace SocialMusic.Models.EntityModels.AuthModels
 
         public int UserId { get; set; }
 
-        public virtual UserProfile UserProfile { get; set;}
+        public virtual List<UserProfile> UserProfiles { get; set;}
 
-        public virtual Role Role { get; set; }
+        public virtual List<Role> Roles { get; set; }
     }
 }

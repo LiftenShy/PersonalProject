@@ -2,11 +2,13 @@
 using System.Threading.Tasks;
 using System.Threading;
 using SocialMusic.Authorize.Models;
-using Newtonsoft.Json;
 using System;
 using Microsoft.AspNetCore.Identity;
 using SocialMusic.Models.EntityModels.AuthModels;
-using SocialMusic.Authorize.Helper;
+using Microsoft.Extensions.Options;
+using SocialMusic.Authorize.Service.Settings;
+using SocialMusic.Authorize.Service.Interfaces;
+using AutoMapper;
 
 namespace SocialMusic.Authorize.AccountAPI
 {
@@ -14,29 +16,43 @@ namespace SocialMusic.Authorize.AccountAPI
     public class AuthorizeAPI : Controller
     {
         private readonly IUserStore<UserProfile> _userStore;
+        private readonly IOptions<AppSettings> _appSettings;
+        private readonly ITokenService _tokenService;
+        private readonly IMapper _mapper;
 
-        public AuthorizeAPI(IUserStore<UserProfile> userStore)
+        public AuthorizeAPI(
+            IUserStore<UserProfile> userStore,
+            IOptions<AppSettings> appSettings,
+            ITokenService tokenService,
+            IMapper mapper)
         {
             _userStore = userStore;
+            _appSettings = appSettings;
+            _tokenService = tokenService;
+            _mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<string> SignInAsync([FromBody] UserProfileModel account)
+        public async Task<IActionResult> SignInAsync([FromBody] UserProfileModel account)
         {
             try
             {
-                var result = await _userStore.CreateAsync(new UserProfile
+                var user = _mapper.Map<UserProfileModel, UserProfile>(account);
+
+                var result = await _userStore.CreateAsync(user, new CancellationToken());
+
+                if (result.Succeeded)
                 {
-                    LoginName = account.LoginName,
-                    PasswordHash = CryptoService.Crypto(account.Password)
-                }, new CancellationToken());
+                    _tokenService.Authorize(user);
+                    return Ok();
+                }
 
+                return BadRequest($"User with this name:{user.LoginName} already have");
 
-                return JsonConvert.SerializeObject(result.Succeeded ? "Succes" : "Failed");
             }
             catch(Exception e)
             {
-                return JsonConvert.SerializeObject(e.Message);
+                return BadRequest(e.Message);
             }
         }
     }

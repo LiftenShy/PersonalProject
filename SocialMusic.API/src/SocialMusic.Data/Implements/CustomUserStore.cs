@@ -12,7 +12,7 @@ namespace SocialMusic.Authorize.Service.Implements
 
         public CustomUserStore(HttpConnector<UserProfile> connector)
         {
-            _connector = connector;
+            _connector = connector ?? throw new System.ArgumentNullException(nameof(connector));
         }
 
         public async Task<IdentityResult> CreateAsync(UserProfile user, CancellationToken cancellationToken)

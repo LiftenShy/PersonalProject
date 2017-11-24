@@ -16,10 +16,20 @@ namespace SocialMusic.Data
         public DbSet<UserRole> UserRoles { get; set; }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserRole>(entity =>
+            {
+                entity.HasMany(ur => ur.UserProfiles)
+                       .WithOne(ur => ur.UserRole);
+            });
+
+            modelBuilder.Entity<UserRole>(entity =>
+            {
+                entity.HasMany(ur => ur.Roles)
+                       .WithOne(ur => ur.UserRole);
+            });
+        }
     }
-    
-    /*protected override OnModelCreating(ModelBuilder modelBuilder)
-    {
-       
-    }*/
 }

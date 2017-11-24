@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SocialMusic.Authorize.Helper;
 using SocialMusic.Authorize.Service.Implements;
 using SocialMusic.Authorize.Service.Interfaces;
 using SocialMusic.Authorize.Service.Settings;
@@ -15,6 +17,8 @@ namespace SocialMusic.Authorize
 {
     public class Startup
     {
+        private MapperConfiguration _mapperConfiguration { get; set; }
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -23,6 +27,11 @@ namespace SocialMusic.Authorize
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            _mapperConfiguration = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -31,6 +40,7 @@ namespace SocialMusic.Authorize
         {
             services.AddScoped(typeof(IUserStore<UserProfile>), typeof(CustomUserStore<UserProfile>));
             services.AddScoped(typeof(IConnector<UserProfile>), typeof(HttpConnector<UserProfile>));
+            services.AddScoped(typeof(ITokenService), typeof(JwtTokenService));
 
             services.AddCors(options =>
             {

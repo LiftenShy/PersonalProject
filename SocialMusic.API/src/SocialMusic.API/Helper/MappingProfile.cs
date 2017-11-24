@@ -6,7 +6,7 @@ using SocialMusic.API.Models;
 using SocialMusic.Models.EntityModels;
 using SocialMusic.Models.EntityModels.AuthModels;
 
-namespace SocialMusic.API.Configs
+namespace SocialMusic.API.Helper
 {
     public class MappingProfile : Profile
     {

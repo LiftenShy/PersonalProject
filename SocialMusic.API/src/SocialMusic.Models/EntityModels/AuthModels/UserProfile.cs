@@ -7,5 +7,7 @@ namespace SocialMusic.Models.EntityModels.AuthModels
         public string LoginName { get; set; }
 
         public byte[] PasswordHash { get; set; }
+
+        public virtual UserRole UserRole { get; set; }
     }
 }

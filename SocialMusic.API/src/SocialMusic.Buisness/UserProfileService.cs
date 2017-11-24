@@ -42,7 +42,7 @@ namespace SocialMusic.Buisness
 
         public async Task Insert(UserProfile person)
         {
-            if (!_userProfileRepository.Table.Any(p => p.LoginName == person.LoginName))
+            if (!_userProfileRepository.Table.Any(p => p.LoginName.Equals(person.LoginName)))
             {
                 await _userProfileRepository.Insert(person);
             }
