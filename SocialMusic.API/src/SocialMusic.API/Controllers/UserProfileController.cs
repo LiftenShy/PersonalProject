@@ -14,7 +14,7 @@ namespace SocialMusic.API.Controllers
     {
         private readonly IUserProfileService _userProfileService;
 
-        private IMapper _mapper { get; set; }
+        private readonly IMapper _mapper;
 
         public UserProfileController(IUserProfileService userProfileService, IMapper mapper)
         {

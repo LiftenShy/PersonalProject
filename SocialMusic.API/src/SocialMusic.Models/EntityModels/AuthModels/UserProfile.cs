@@ -1,4 +1,5 @@
 ﻿using SocialMusic.Models.EntityModels.BaseModels;
+using System.Collections.Generic;
 
 namespace SocialMusic.Models.EntityModels.AuthModels
 {
@@ -8,6 +9,6 @@ namespace SocialMusic.Models.EntityModels.AuthModels
 
         public byte[] PasswordHash { get; set; }
 
-        public virtual UserRole UserRole { get; set; }
+        public virtual ICollection<UserRole> UserRole { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1F950D3D-9E03-4EC1-AE8F-7EDB04BD98CB}"
 EndProject
@@ -13,11 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMusic.API", "src\Soci
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMusic.Buisness", "src\SocialMusic.Buisness\SocialMusic.Buisness.csproj", "{8D1AFDB5-DA98-4D18-A6BA-155F4BE6D214}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMusic.Data", "src\SocialMusic.Data\SocialMusic.Data.csproj", "{4A87D212-A0B7-4959-A5C1-877E776DDCD5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMusic.Authorize", "..\SocialMusic.Authorize\SocialMusic.Authorize\SocialMusic.Authorize.csproj", "{B67D29B7-3494-43B2-AE5C-792F99888827}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMusic.Authorize.Service", "..\SocialMusic.Authorize\SocialMusic.Authorize.Service\SocialMusic.Authorize.Service.csproj", "{4AE6D8CB-D317-411D-B895-E8769159864D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMusic.Data", "src\SocialMusic.Data\SocialMusic.Data.csproj", "{11CFDE8C-95AD-4E53-AEE7-AC76D446AD4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +37,6 @@ Global
 		{8D1AFDB5-DA98-4D18-A6BA-155F4BE6D214}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D1AFDB5-DA98-4D18-A6BA-155F4BE6D214}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D1AFDB5-DA98-4D18-A6BA-155F4BE6D214}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4A87D212-A0B7-4959-A5C1-877E776DDCD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A87D212-A0B7-4959-A5C1-877E776DDCD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A87D212-A0B7-4959-A5C1-877E776DDCD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A87D212-A0B7-4959-A5C1-877E776DDCD5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B67D29B7-3494-43B2-AE5C-792F99888827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B67D29B7-3494-43B2-AE5C-792F99888827}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B67D29B7-3494-43B2-AE5C-792F99888827}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,6 +45,10 @@ Global
 		{4AE6D8CB-D317-411D-B895-E8769159864D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AE6D8CB-D317-411D-B895-E8769159864D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AE6D8CB-D317-411D-B895-E8769159864D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11CFDE8C-95AD-4E53-AEE7-AC76D446AD4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11CFDE8C-95AD-4E53-AEE7-AC76D446AD4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11CFDE8C-95AD-4E53-AEE7-AC76D446AD4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11CFDE8C-95AD-4E53-AEE7-AC76D446AD4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,9 +57,9 @@ Global
 		{BB09A5B2-AE15-428B-8ADD-5A1AD74D4B0E} = {1F950D3D-9E03-4EC1-AE8F-7EDB04BD98CB}
 		{327D5707-511E-4FB2-9D74-1FF157ACA602} = {1F950D3D-9E03-4EC1-AE8F-7EDB04BD98CB}
 		{8D1AFDB5-DA98-4D18-A6BA-155F4BE6D214} = {1F950D3D-9E03-4EC1-AE8F-7EDB04BD98CB}
-		{4A87D212-A0B7-4959-A5C1-877E776DDCD5} = {1F950D3D-9E03-4EC1-AE8F-7EDB04BD98CB}
 		{B67D29B7-3494-43B2-AE5C-792F99888827} = {1F950D3D-9E03-4EC1-AE8F-7EDB04BD98CB}
 		{4AE6D8CB-D317-411D-B895-E8769159864D} = {1F950D3D-9E03-4EC1-AE8F-7EDB04BD98CB}
+		{11CFDE8C-95AD-4E53-AEE7-AC76D446AD4C} = {1F950D3D-9E03-4EC1-AE8F-7EDB04BD98CB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F59CBC10-91B7-41AC-9E81-21BCBF4F5008}

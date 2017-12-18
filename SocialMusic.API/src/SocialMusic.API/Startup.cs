@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SocialMusic.Buisness.Abstract;
-using SocialMusic.API.Configs;
+using SocialMusic.API.Helper;
 using SocialMusic.Buisness;
 using SocialMusic.Data;
 using SocialMusic.Data.Abstract;
@@ -18,6 +18,8 @@ namespace SocialMusic.API
 {
     public class Startup
     {
+        public IConfigurationRoot Configuration { get; }
+
         private MapperConfiguration _mapperConfiguration { get; set; }
 
         public Startup(IHostingEnvironment env)
@@ -35,7 +37,6 @@ namespace SocialMusic.API
             });
         }
 
-        public IConfigurationRoot Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -57,10 +58,9 @@ namespace SocialMusic.API
                 options.Filters.Add(new CorsAuthorizationFilterFactory("AllowSpecificOrigin"));
             });
 
-            var connection =
-                @"Server=localhost\SQLEXPRESS;Database=Persons;Trusted_Connection=True;";
+            var connection = @"Server=localhost\SQLEXPRESS;Database=SocialMusic;Trusted_Connection=True;";
 
-            services.AddDbContext<PersonContext>(options => options.UseSqlServer(connection),ServiceLifetime.Singleton);
+            services.AddDbContext<SocialMusicContext>(options => options.UseSqlServer(connection), ServiceLifetime.Singleton);
 
             services.AddSingleton(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddSingleton<IPersonService, PersonService>();
@@ -76,9 +76,10 @@ namespace SocialMusic.API
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory
-                .AddConsole()
-                .AddDebug();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
             app.UseCors("AllowSpecificOrigin");
 

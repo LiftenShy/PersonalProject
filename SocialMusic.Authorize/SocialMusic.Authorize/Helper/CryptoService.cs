@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -25,6 +23,11 @@ namespace SocialMusic.Authorize.Helper
             {
                 throw encoderException;
             }
+        }
+
+        public static string Decrypto(byte[] cryptoPassword)
+        {
+            throw new NotImplementedException();
         }
     }
 }

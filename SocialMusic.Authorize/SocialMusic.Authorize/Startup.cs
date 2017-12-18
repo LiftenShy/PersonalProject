@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +16,8 @@ namespace SocialMusic.Authorize
 {
     public class Startup
     {
+        public IConfigurationRoot Configuration { get; }
+
         private MapperConfiguration _mapperConfiguration { get; set; }
 
         public Startup(IHostingEnvironment env)
@@ -34,12 +35,10 @@ namespace SocialMusic.Authorize
             });
         }
 
-        public IConfigurationRoot Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped(typeof(IUserStore<UserProfile>), typeof(CustomUserStore<UserProfile>));
-            services.AddScoped(typeof(IConnector<UserProfile>), typeof(HttpConnector<UserProfile>));
+            services.AddScoped(typeof(IConnector<UserProfile>), typeof(HttpRequestFactory<UserProfile>));
             services.AddScoped(typeof(ITokenService), typeof(JwtTokenService));
 
             services.AddCors(options =>
@@ -53,8 +52,10 @@ namespace SocialMusic.Authorize
                             .AllowCredentials();
                     });
             });
+
             var appSettings = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettings);
+
             services.AddMvc();
             services.Configure<MvcOptions>(options =>
             {
@@ -63,30 +64,35 @@ namespace SocialMusic.Authorize
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "SocialMusic.Authorize API", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "SocialMusic Authorize API", Version = "v1" });
             });
+
+            services.AddAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseCors("AllowSpecificOrigin");
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("AllowSpecificOrigin");
+
             app.UseAuthentication();
 
-            app.UseMvc();
+            app.UseStaticFiles();
 
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SocialMusic.Authorize API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SocialMusic Authorize API V1");
             });
+
+            app.UseMvc();
         }
     }
 }

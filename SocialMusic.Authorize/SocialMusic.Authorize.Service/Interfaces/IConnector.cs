@@ -1,10 +1,20 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net.Http;
+using System.Threading.Tasks;
+using SocialMusic.Models.EntityModels.BaseModels;
 
 namespace SocialMusic.Authorize.Service.Interfaces
 {
     public interface IConnector<T>
-        where T : class
+        where T : BaseEntity
     {
-        Task<bool> PostAsJson(T model);
+        Task<HttpResponseMessage> Get(string requestUri);
+
+        Task<HttpResponseMessage> Post(string requestUri, T value);
+
+        Task<HttpResponseMessage> Put(string requestUri, T value);
+
+        Task<HttpResponseMessage> Patch(string requestUri, T value);
+
+        Task<HttpResponseMessage> Delete(string requestUri);
     }
 }

@@ -11,11 +11,11 @@ namespace SocialMusic.Data
 {
     public class EfRepository<T> : IRepository<T> where T : BaseEntity
     {
-        private readonly PersonContext _context;
+        private readonly SocialMusicContext _context;
 
         private DbSet<T> _entities;
 
-        public EfRepository(PersonContext context)
+        public EfRepository(SocialMusicContext context)
         {
             _context = context;
         }
